@@ -8,9 +8,12 @@
                 <div class="card-header">Product Details</div>
 
                 <div class="card-body">
-                    Title:  {{$post->title}} <br/><br/>
-                    Content : {{$post->content}} <br/><br/>
-                    Image: <img src="{{$post->getFirstMediaUrl('images', 'thumb')}}" />
+                    <div>Title:  {{$post->title}}</div>
+                    <div>Content : {{$post->content}}</div>
+                    <div>Image</div>
+                    <div><img src="{{$post->getFirstMediaUrl('images', 'thumb')}}" /></div>
+                    <div>Responsive Image</div>
+                    <div>{{ $post->getFirstMedia('images') }}</div>
                 </div>
             </div>
         </div>

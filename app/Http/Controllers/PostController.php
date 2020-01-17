@@ -42,7 +42,9 @@ class PostController extends Controller
 
         //Store Image
         if($request->hasFile('image') && $request->file('image')->isValid()){
-            $post->addMediaFromRequest('image')->toMediaCollection('images');
+            $post->addMediaFromRequest('image')
+                ->withResponsiveImages()
+                ->toMediaCollection('images');
         }
 
         return redirect("/posts/{$post->id}")->with('success', 'New Post Added !');
