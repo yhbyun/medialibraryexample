@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -35,7 +35,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Populate model
+        $post = new Post($request->except(['image']));
+
+        $post->save();
+
+        //Store Image
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $post->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+
+        return redirect("/posts/{$post->id}")->with('success', 'New Post Added !');
     }
 
     /**
@@ -46,7 +56,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**
